@@ -1,0 +1,3 @@
+2025-02-12 23:23:41.8292 Info Message Template Auto Format enabled
+2025-02-12 23:23:41.8624 Info Adding target FileTarget(Name=logfile)
+2025-02-12 23:23:41.8709 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config

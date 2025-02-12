@@ -14,19 +14,16 @@ namespace Services
 
 
         private readonly IRepositoryManager _manager;
+        private readonly ILoggerService _logger;
 
-
-        public BookManager(IRepositoryManager manager)
+        public BookManager(IRepositoryManager manager, ILoggerService logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         public Book CreateOneBook(Book book)
         {
-            if (book is null)
-            {
-                throw new ArgumentNullException(nameof(book));
-            }
             _manager.BookRepository.CreateOneBook(book);
             _manager.Save();
             return book;
@@ -35,8 +32,11 @@ namespace Services
         public void DeleteOneBook(int id, bool trackChanges)
         {
             var entity= _manager.BookRepository.GetOneBookById(id,trackChanges);
-            if (entity is null)
-                throw new Exception($"Book with id:{id} could not found");
+            if (entity is null) {
+                string message=$"The book with id:{id} was not found";
+                _logger.LogInfo(message);
+                throw new Exception(message);
+            }  
             _manager.BookRepository.DeleteOneBook(entity);
             _manager.Save();
         }   
@@ -55,7 +55,11 @@ namespace Services
         {
            var entity=_manager.BookRepository.GetOneBookById(id,trackChanges);
             if (entity is null)
-                throw new Exception($"Book with id{id} could not found");
+            {
+                string message = $"The book with id:{id} was not found";
+                _logger.LogInfo(message);
+                throw new Exception(message);
+            }
             _manager.BookRepository.UpdateOneBook(entity);
             _manager.Save();
             

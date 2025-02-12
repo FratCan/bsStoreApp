@@ -21,5 +21,12 @@ namespace bsStoreApp.Extensions
 
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager,ServiceManager>();
+
+
+        public static void ConfigureNLogService(this IServiceCollection services) => 
+            services.AddSingleton<ILoggerService, LoggerManager>();
+            // AddSingleton demek tek bir defa oluşturulacak ve herkes oradan kullancak.
+            // Tüm istekler aynısı nesneyi paylaşır.Daha hızlıdır.Daha az bellek kullanılır.
+            //İlk itstek sırasında oluşturulur.
     }
 }

@@ -1,9 +1,12 @@
 using Repositories.EFCore;
 using Microsoft.EntityFrameworkCore;
 using bsStoreApp.Extensions;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nLog.config"));
 // Add services to the container.
 
 builder.Services.AddControllers()
@@ -17,7 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureSqlConnect(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
-
+builder.Services.ConfigureNLogService();
 
 var app = builder.Build();
 
