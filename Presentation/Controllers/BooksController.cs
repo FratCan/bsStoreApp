@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Exceptions;
+using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -35,18 +36,24 @@ namespace Presentation.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
         {
-            //var book = manager.BookRepository.GetOneBookById(id, false);//context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
-            var book = _manager.BookService.GetOneBookById(id, false);
-            if (book is null)
-                return NotFound();
-            return Ok(book);
+          
+                //throw new Exception("!!!!");
+                //var book = manager.BookRepository.GetOneBookById(id, false);//context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+                var book = _manager.BookService.GetOneBookById(id, false);
+               /*
+                if (book is null)
+                    //return NotFound(); //404
+                    throw new BookNotFoundException(id);  Hata fırlatma işini serviste yapıcam.
+               */
+                return Ok(book);
+            
+            
         }
 
         [HttpPost]
         public IActionResult AddOneBook([FromBody] Book book)
         {
-            try
-            {
+            
                 if (book is null)
                     return BadRequest();
                 _manager.BookService.CreateOneBook(book);
@@ -55,18 +62,13 @@ namespace Presentation.Controllers
                 // context.Books.Add(book);
                 //context.SaveChanges(); //Değişikliği kalıcı olarak onaylamış oluruz.
                 return StatusCode(201, book);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            
         }
 
         [HttpPut("{id:int}")]
         public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] Book book)
         {
-            try
-            {
+            
                 if (book is null)
                     return BadRequest(); //400
                 /*
@@ -89,19 +91,13 @@ namespace Presentation.Controllers
                 _manager.BookService.UpdateOneBook(id, book, false);
                 //return Ok(book);
                 return NoContent(); //204
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult DeleteOneBook([FromRoute(Name = "id")] int id)
         {
-            try
-            {
-
+            
                 //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
                 /*
                  var entity = manager.BookRepository.GetOneBookById(id, false);
@@ -115,19 +111,13 @@ namespace Presentation.Controllers
                 _manager.BookService.DeleteOneBook(id, false);
                 return NoContent();
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
 
         [HttpPatch("{id:int}")]
 
         public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<Book> book)
         {
-            try
-            {
+            
                 //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
                 /*
                 var entity=manager.BookRepository.GetOneBookById(id, true);
@@ -139,16 +129,14 @@ namespace Presentation.Controllers
                 manager.BookRepository.Update(entity);
                  */
                 var entity = _manager.BookService.GetOneBookById(id, true);
+            /*
                 if (entity is null)
                     return NotFound();
+            */
                 book.ApplyTo(entity);
                 _manager.BookService.UpdateOneBook(id, entity, false);
                 return NoContent();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            
         }
     }
 }

@@ -2,6 +2,7 @@ using Repositories.EFCore;
 using Microsoft.EntityFrameworkCore;
 using bsStoreApp.Extensions;
 using NLog;
+using Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +25,18 @@ builder.Services.ConfigureNLogService();
 
 var app = builder.Build();
 
+var logger=app.Services.GetRequiredService<ILoggerService>();
+app.ConfigureExceptionHandler(logger);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+if(app.Environment.IsProduction())
+{
+    app.UseHsts();  
+}
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
