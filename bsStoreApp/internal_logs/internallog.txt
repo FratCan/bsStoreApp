@@ -22,3 +22,5 @@
 2025-02-17 20:44:44.7261 Info Message Template Auto Format enabled
 2025-02-17 20:44:44.7579 Info Adding target FileTarget(Name=logfile)
 2025-02-17 20:44:44.7664 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-18 19:35:16.6706 Info AppDomain Shutting down. LogFactory closing...
+2025-02-18 19:35:16.7006 Info LogFactory has been closed.

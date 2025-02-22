@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Repositories.Contracts;
 using Services.Contracts;
 using System;
@@ -13,11 +14,12 @@ namespace Services
     {
         private readonly Lazy<IBookService> _bookService;
 
-        public ServiceManager(IRepositoryManager repositoryManager,ILoggerService logger)
+        public ServiceManager(IRepositoryManager repositoryManager,ILoggerService logger,IMapper mapper)
         {
-            _bookService= new Lazy<IBookService>(()=>new BookManager(repositoryManager,logger));
+            _bookService= new Lazy<IBookService>(()=>new BookManager(repositoryManager,logger,mapper));
         }
 
+        //ctr yerine alan tanıma yaparsam  yani IBookService gibi yaparsam class'ın geri kalnında da kullanmak zorunda kalırım.
 
         public IBookService BookService => _bookService.Value;
     }
