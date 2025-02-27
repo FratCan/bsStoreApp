@@ -54,3 +54,70 @@
 2025-02-25 18:48:22.4789 Info Message Template Auto Format enabled
 2025-02-25 18:48:22.5374 Info Adding target FileTarget(Name=logfile)
 2025-02-25 18:48:22.5517 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:13:53.6933 Info Message Template Auto Format enabled
+2025-02-26 19:13:53.7498 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:13:53.7611 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:14:30.0516 Info Message Template Auto Format enabled
+2025-02-26 19:14:30.1065 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:14:30.1150 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:16:41.1456 Info Message Template Auto Format enabled
+2025-02-26 19:16:41.2018 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:16:41.2102 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:18:36.1498 Info Message Template Auto Format enabled
+2025-02-26 19:18:36.2135 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:18:36.2135 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:26:14.6265 Info Message Template Auto Format enabled
+2025-02-26 19:26:14.6949 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:26:14.6949 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:31:26.1707 Info Message Template Auto Format enabled
+2025-02-26 19:31:26.2268 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:31:26.2421 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:38:07.9115 Info Message Template Auto Format enabled
+2025-02-26 19:38:07.9500 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:38:07.9582 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:56:13.1427 Info Message Template Auto Format enabled
+2025-02-26 19:56:13.1770 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:56:13.1770 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:57:14.4004 Info Message Template Auto Format enabled
+2025-02-26 19:57:14.4901 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:57:14.4901 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 19:59:39.9836 Info Message Template Auto Format enabled
+2025-02-26 19:59:40.0201 Info Adding target FileTarget(Name=logfile)
+2025-02-26 19:59:40.0201 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 20:01:06.8435 Info Message Template Auto Format enabled
+2025-02-26 20:01:06.9214 Info Adding target FileTarget(Name=logfile)
+2025-02-26 20:01:06.9309 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 20:02:20.8522 Info Message Template Auto Format enabled
+2025-02-26 20:02:20.9111 Info Adding target FileTarget(Name=logfile)
+2025-02-26 20:02:20.9111 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-26 20:03:20.1860 Info Message Template Auto Format enabled
+2025-02-26 20:03:20.3284 Info Adding target FileTarget(Name=logfile)
+2025-02-26 20:03:20.3389 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 19:28:42.9699 Info Message Template Auto Format enabled
+2025-02-27 19:28:43.0149 Info Adding target FileTarget(Name=logfile)
+2025-02-27 19:28:43.0149 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 19:30:48.5422 Info Message Template Auto Format enabled
+2025-02-27 19:30:48.5690 Info Adding target FileTarget(Name=logfile)
+2025-02-27 19:30:48.5764 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 19:30:48.9592 Info Message Template Auto Format enabled
+2025-02-27 19:30:48.9878 Info Adding target FileTarget(Name=logfile)
+2025-02-27 19:30:48.9955 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 19:59:28.4013 Info Message Template Auto Format enabled
+2025-02-27 19:59:28.4288 Info Adding target FileTarget(Name=logfile)
+2025-02-27 19:59:28.4360 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 20:06:43.3303 Info AppDomain Shutting down. LogFactory closing...
+2025-02-27 20:06:43.3459 Info LogFactory has been closed.
+2025-02-27 21:13:35.3513 Info Message Template Auto Format enabled
+2025-02-27 21:13:35.3779 Info Adding target FileTarget(Name=logfile)
+2025-02-27 21:13:35.3779 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 21:15:17.2289 Info Message Template Auto Format enabled
+2025-02-27 21:15:17.2553 Info Adding target FileTarget(Name=logfile)
+2025-02-27 21:15:17.2632 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 21:15:17.8526 Info Message Template Auto Format enabled
+2025-02-27 21:15:17.8822 Info Adding target FileTarget(Name=logfile)
+2025-02-27 21:15:17.8898 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 21:16:55.7714 Info Message Template Auto Format enabled
+2025-02-27 21:16:55.7971 Info Adding target FileTarget(Name=logfile)
+2025-02-27 21:16:55.7971 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\C# Projects\bsStoreApp\bsStoreApp\nLog.config
+2025-02-27 21:17:45.6152 Info AppDomain Shutting down. LogFactory closing...
+2025-02-27 21:17:45.6277 Info LogFactory has been closed.

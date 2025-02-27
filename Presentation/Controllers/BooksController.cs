@@ -52,17 +52,21 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOneBook([FromBody] Book book)
+        public IActionResult AddOneBook([FromBody] BookDtoForInsertion bookDtoforinsertion)
         {
             
-                if (book is null)
+                if (bookDtoforinsertion is null)
                     return BadRequest();
-                _manager.BookService.CreateOneBook(book);
+                if (!ModelState.IsValid)
+                {
+                    return UnprocessableEntity(ModelState);
+                }
+                _manager.BookService.CreateOneBook(bookDtoforinsertion);
                 //manager.BookRepository.CreateOneBook(book);
                 //manager.Save();
                 // context.Books.Add(book);
                 //context.SaveChanges(); //Değişikliği kalıcı olarak onaylamış oluruz.
-                return StatusCode(201, book);
+                return StatusCode(201, bookDtoforinsertion);
             
         }
 
@@ -72,6 +76,8 @@ namespace Presentation.Controllers
             
                 if (bookDto is null)
                     return BadRequest(); //400
+                if(!ModelState.IsValid)
+                    return UnprocessableEntity(ModelState); //422
                 /*
                 //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
                 var entity=manager.BookRepository.GetOneBookById(id,true);
@@ -116,7 +122,7 @@ namespace Presentation.Controllers
 
         [HttpPatch("{id:int}")]
 
-        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<Book> book)
+        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPach)
         {
             
                 //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
@@ -129,14 +135,31 @@ namespace Presentation.Controllers
                 //context.SaveChanges();
                 manager.BookRepository.Update(entity);
                  */
-                var entity = _manager.BookService.GetOneBookById(id, true);
+                if(bookPach is null)
+                return BadRequest();
+              //  var bookDto = _manager.BookService.GetOneBookById(id, true);
+              var result=_manager.BookService.GetOneBookForPatch(id,false);
             /*
                 if (entity is null)
                     return NotFound();
             */
-                book.ApplyTo(entity);
-                _manager.BookService.UpdateOneBook(id, new BookDtoForUpdate(entity.Id,entity.Title,entity.Price), false);
-                return NoContent();
+                bookPach.ApplyTo(result.bookDtoForUpdate,ModelState);
+            /*
+                _manager.BookService.UpdateOneBook(id, 
+                    new BookDtoForUpdate()
+                    { 
+                        Id=bookDto.Id,
+                        Title = bookDto.Title,
+                        Price =bookDto.Price,
+                        
+                    }, true);
+            */
+            TryValidateModel(result.bookDtoForUpdate);
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+            
+            _manager.BookService.SaveChangesForPatch(result.bookDtoForUpdate,result.book);
+            return NoContent();
             
         }
     }
