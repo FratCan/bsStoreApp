@@ -25,9 +25,9 @@ namespace Repositories.EFCore
 
         public IBookRepository BookRepository =>_bookRepository.Value;
 
-        public void Save()  //save işlemini context üzerinde yapacağım için bir RepositoryContext injection işlemi yapmam lazım.
+        public async Task SaveAsync()  //save işlemini context üzerinde yapacağım için bir RepositoryContext injection işlemi yapmam lazım.
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

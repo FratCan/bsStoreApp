@@ -28,18 +28,18 @@ namespace Services
             _mapper = mapper;
         }
 
-        public BookDto CreateOneBook(BookDtoForInsertion bookDtoforinsertion)
+        public async Task<BookDto> CreateOneBookAsync(BookDtoForInsertion bookDtoforinsertion)
         {
              var entity=_mapper.Map<Book>(bookDtoforinsertion);
               
             _manager.BookRepository.CreateOneBook(entity);
-            _manager.Save();
+            _manager.SaveAsync();
             return _mapper.Map<BookDto>(entity);
         }
 
-        public void DeleteOneBook(int id, bool trackChanges)
+        public async Task DeleteOneBookAsync(int id, bool trackChanges)
         {
-            var entity= _manager.BookRepository.GetOneBookById(id,trackChanges);
+            var entity= await _manager.BookRepository.GetOneBookByIdAsync(id,trackChanges);
             if (entity is null) {
                 /*
                 string message=$"The book with id:{id} was not found";
@@ -49,24 +49,24 @@ namespace Services
                 throw new BookNotFoundException(id);
             }  
             _manager.BookRepository.DeleteOneBook(entity);
-            _manager.Save();
+            await _manager.SaveAsync();
 
         }   
 
-        public IEnumerable<BookDto> GetAllBooks(bool trackChanges)
+        public async Task<IEnumerable<BookDto>> GetAllBooksAsync(bool trackChanges)
         {
-            _logger.LogInfo($"{nameof(GetAllBooks)} books");
+            _logger.LogInfo($"{nameof(GetAllBooksAsync)} books");
 
             //return _manager.BookRepository.GetAllBooks(trackChanges);
-            var books = _manager.BookRepository.GetAllBooks(trackChanges);
+            var books =await _manager.BookRepository.GetAllBooksAsync(trackChanges);
             return _mapper.Map<IEnumerable<BookDto>>(books);
         }
 
-        public BookDto GetOneBookById(int id, bool trackChanges)
+        public async Task<BookDto> GetOneBookByIdAsync(int id, bool trackChanges)
         {
             
             //return _manager.BookRepository.GetOneBookById(id, trackChanges);
-            var book= _manager.BookRepository.GetOneBookById(id, trackChanges);
+            var book=await _manager.BookRepository.GetOneBookByIdAsync(id, trackChanges);
             if (book is null)
             {
                 throw new BookNotFoundException(id);
@@ -75,9 +75,9 @@ namespace Services
             return _mapper.Map<BookDto>(book);
         }
 
-        public (BookDtoForUpdate bookDtoForUpdate, Book book) GetOneBookForPatch(int id, bool trackChanges)
+        public async Task<(BookDtoForUpdate bookDtoForUpdate, Book book)> GetOneBookForPatchAsync(int id, bool trackChanges)
         {
-            var book = _manager.BookRepository.GetOneBookById(id, trackChanges);
+            var book =await _manager.BookRepository.GetOneBookByIdAsync(id, trackChanges);
             if (book is null)
             {
                 throw new BookNotFoundException(id);
@@ -86,16 +86,16 @@ namespace Services
             return(bookDtoForUpdate, book);
         }
 
-        public void SaveChangesForPatch(BookDtoForUpdate bookDtoForUpdate, Book book)
+        public async Task SaveChangesForPatchAsync(BookDtoForUpdate bookDtoForUpdate, Book book)
         {
             _mapper.Map(bookDtoForUpdate, book);
-            _manager.Save();
+            await _manager.SaveAsync();
             
         }
 
-        public void UpdateOneBook(int id, BookDtoForUpdate bookDto,bool trackChanges)
+        public async Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto,bool trackChanges)
         {
-           var entity=_manager.BookRepository.GetOneBookById(id,trackChanges);
+           var entity=await _manager.BookRepository.GetOneBookByIdAsync(id,trackChanges);
             if (entity is null)
             {
                 /*
@@ -111,7 +111,7 @@ namespace Services
             entity = _mapper.Map<Book>(bookDto);
 
             _manager.BookRepository.UpdateOneBook(entity);
-            _manager.Save();
+            await _manager.SaveAsync();
         }
     }
 }
