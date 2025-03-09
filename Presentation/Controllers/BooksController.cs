@@ -1,17 +1,12 @@
 ﻿using Entities.DataTransferObjects;
-using Entities.Exceptions;
-using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
+    [ServiceFilter(typeof(LogFilterAttribute))] //Bütün metodların loglanmasını hedefliyorum.
     [ApiController]
     [Route("api/books")]
     public class BooksController : ControllerBase
@@ -50,17 +45,18 @@ namespace Presentation.Controllers
             
             
         }
-
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost]
         public async Task<IActionResult> AddOneBookAsync([FromBody] BookDtoForInsertion bookDtoforinsertion)
         {
-            
+                /* //Burası yerine ValidationActionFilterAttribute kullandım
                 if (bookDtoforinsertion is null)
                     return BadRequest();
                 if (!ModelState.IsValid)
                 {
                     return UnprocessableEntity(ModelState);
                 }
+                */
                 await _manager.BookService.CreateOneBookAsync(bookDtoforinsertion);
                 //manager.BookRepository.CreateOneBook(book);
                 //manager.Save();
@@ -69,33 +65,34 @@ namespace Presentation.Controllers
                 return StatusCode(201, bookDtoforinsertion);
             
         }
-
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
-            
+            /*  //Burası yerine ValidationActionFilterAttribute kullandım
                 if (bookDto is null)
                     return BadRequest(); //400
                 if(!ModelState.IsValid)
                     return UnprocessableEntity(ModelState); //422
-                /*
-                //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
-                var entity=manager.BookRepository.GetOneBookById(id,true);
+            */
+            /*
+            //var entity = context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+            var entity=manager.BookRepository.GetOneBookById(id,true);
 
-                // check book
-                if (entity is null)   
-                    return NotFound();   //404
+            // check book
+            if (entity is null)   
+                return NotFound();   //404
 
-                //check id
-                if (id != book.Id)
-                    return BadRequest();   //400
+            //check id
+            if (id != book.Id)
+                return BadRequest();   //400
 
-                entity.Title = book.Title;
-                entity.Price = book.Price;
-                //context.SaveChanges();
-                manager.Save();
-                */
-                await _manager.BookService.UpdateOneBookAsync(id, bookDto, false);
+            entity.Title = book.Title;
+            entity.Price = book.Price;
+            //context.SaveChanges();
+            manager.Save();
+            */
+            await _manager.BookService.UpdateOneBookAsync(id, bookDto, false);
                 //return Ok(book);
                 return NoContent(); //204
             

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Presentation.ActionFilters;
 using Repositories.Contracts;
 using Repositories.EFCore;
 using Services;
@@ -25,8 +26,13 @@ namespace bsStoreApp.Extensions
 
         public static void ConfigureNLogService(this IServiceCollection services) => 
             services.AddSingleton<ILoggerService, LoggerManager>();
-            // AddSingleton demek tek bir defa oluşturulacak ve herkes oradan kullancak.
-            // Tüm istekler aynısı nesneyi paylaşır.Daha hızlıdır.Daha az bellek kullanılır.
-            //İlk itstek sırasında oluşturulur.
+        // AddSingleton demek tek bir defa oluşturulacak ve herkes oradan kullancak.
+        // Tüm istekler aynısı nesneyi paylaşır.Daha hızlıdır.Daha az bellek kullanılır.
+        //İlk itstek sırasında oluşturulur.
+        public static void ConfigureActionFilters(this IServiceCollection services)
+        {
+            services.AddScoped<ValidationFilterAttribute>();
+            services.AddSingleton<LogFilterAttribute>();
+        }
     }
 }

@@ -4,6 +4,7 @@ using bsStoreApp.Extensions;
 using NLog;
 using Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddControllers(config =>
     .AddXmlDataContractSerializerFormatters()
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson();
+//kaydýný sonradan ServiceExtensiona eklediðim için burayý yorum satýrýna aldým.
+//builder.Services.AddScoped<ValidationFilterAttribute>(); //AddScoped her kullanýcý için ayrý bir nesne üretir
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
@@ -34,7 +37,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureNLogService();
 builder.Services.AddAutoMapper(typeof(Program));
-
+builder.Services.ConfigureActionFilters();
 
 var app = builder.Build();
 
